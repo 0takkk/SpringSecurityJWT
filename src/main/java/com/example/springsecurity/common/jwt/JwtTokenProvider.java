@@ -1,5 +1,6 @@
 package com.example.springsecurity.common.jwt;
 
+import com.example.springsecurity.common.jwt.member.MemberDetails;
 import com.example.springsecurity.domain.Member;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -39,10 +40,12 @@ public class JwtTokenProvider implements InitializingBean {
     }
 
     public String createToken(Authentication authentication){
+        Claims claims = Jwts.claims().setSubject(authentication.getName());
+        claims.put("roles", authentication.getAuthorities());
         Date now = new Date();
 
         return Jwts.builder()
-                .setSubject(authentication.getName())
+                .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + tokenAliveTime))
                 .signWith(key, SignatureAlgorithm.HS256)
@@ -58,7 +61,7 @@ public class JwtTokenProvider implements InitializingBean {
                 .getBody();
 
         UserDetails userDetails = memberDetailsService.loadUserByUsername(claims.getSubject());
-        return new UsernamePasswordAuthenticationToken(userDetails, "");
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
     public boolean validateToken(String token){

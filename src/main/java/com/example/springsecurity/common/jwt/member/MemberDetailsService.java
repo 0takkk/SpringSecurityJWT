@@ -26,6 +26,7 @@ public class MemberDetailsService implements UserDetailsService{
                 .id(member.getId())
                 .name(member.getName())
                 .password(member.getPassword())
+                .role(member.getRole())
                 .build();
     }
 }
