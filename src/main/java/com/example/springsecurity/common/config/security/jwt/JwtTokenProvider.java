@@ -1,7 +1,5 @@
-package com.example.springsecurity.common.jwt;
+package com.example.springsecurity.common.config.security.jwt;
 
-import com.example.springsecurity.common.jwt.member.MemberDetails;
-import com.example.springsecurity.domain.Member;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

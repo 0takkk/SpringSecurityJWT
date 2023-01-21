@@ -1,13 +1,9 @@
 package com.example.springsecurity.service;
 
-import com.example.springsecurity.common.jwt.JwtAuthenticationFilter;
-import com.example.springsecurity.common.jwt.JwtTokenProvider;
+import com.example.springsecurity.common.config.security.jwt.JwtTokenProvider;
 import com.example.springsecurity.dto.LoginDto;
 import com.example.springsecurity.dto.TokenDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;

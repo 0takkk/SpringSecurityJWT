@@ -1,4 +1,4 @@
-package com.example.springsecurity.common.jwt.member;
+package com.example.springsecurity.common.config.security.member;
 
 import com.example.springsecurity.domain.Member;
 import com.example.springsecurity.repository.MemberRepository;

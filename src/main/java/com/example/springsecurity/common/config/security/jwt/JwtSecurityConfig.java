@@ -1,4 +1,4 @@
-package com.example.springsecurity.common.jwt;
+package com.example.springsecurity.common.config.security.jwt;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;

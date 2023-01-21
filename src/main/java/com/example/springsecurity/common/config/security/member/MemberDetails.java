@@ -1,4 +1,4 @@
-package com.example.springsecurity.common.jwt.member;
+package com.example.springsecurity.common.config.security.member;
 
 import com.example.springsecurity.domain.Role;
 import lombok.Builder;
