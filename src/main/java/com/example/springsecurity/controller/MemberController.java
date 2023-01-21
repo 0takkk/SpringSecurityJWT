@@ -1,8 +1,9 @@
 package com.example.springsecurity.controller;
 
-import com.example.springsecurity.common.jwt.JwtAuthenticationFilter;
+import com.example.springsecurity.common.config.security.jwt.JwtAuthenticationFilter;
 import com.example.springsecurity.dto.LoginDto;
 import com.example.springsecurity.dto.MemberDto;
+import com.example.springsecurity.dto.ReIssueDto;
 import com.example.springsecurity.dto.TokenDto;
 import com.example.springsecurity.service.LoginService;
 import com.example.springsecurity.service.MemberService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -38,7 +40,7 @@ public class MemberController {
         TokenDto tokenDto = loginService.login(loginDto);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add(JwtAuthenticationFilter.AUTHORIZATION_HEADER, "Bearer " + tokenDto.getToken());
+        headers.add(JwtAuthenticationFilter.AUTHORIZATION_HEADER, "Bearer " + tokenDto.getAccessToken());
 
         return new ResponseEntity<>(tokenDto, headers, HttpStatus.OK);
     }
@@ -49,6 +51,12 @@ public class MemberController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("/reissue")
+    public ResponseEntity<TokenDto> reIssue(@RequestBody ReIssueDto reIssueDto){
+        log.info("controller reIssue");
+        TokenDto tokenDto = loginService.reIssue(reIssueDto);
+        return new ResponseEntity<>(tokenDto, HttpStatus.OK);
+    }
 
 
 

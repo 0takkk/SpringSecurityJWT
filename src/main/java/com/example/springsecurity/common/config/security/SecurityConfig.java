@@ -1,12 +1,11 @@
-package com.example.springsecurity.common.config;
+package com.example.springsecurity.common.config.security;
 
-import com.example.springsecurity.common.jwt.JwtAccessDeniedHandler;
-import com.example.springsecurity.common.jwt.JwtAuthenticationEntryPoint;
-import com.example.springsecurity.common.jwt.JwtSecurityConfig;
-import com.example.springsecurity.common.jwt.JwtTokenProvider;
+import com.example.springsecurity.common.config.security.AccessDeniedHandler.JwtAccessDeniedHandler;
+import com.example.springsecurity.common.config.security.AuthenticationEntryPoint.JwtAuthenticationEntryPoint;
+import com.example.springsecurity.common.config.security.jwt.JwtSecurityConfig;
+import com.example.springsecurity.common.config.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

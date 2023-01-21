@@ -1,4 +1,4 @@
-package com.example.springsecurity.common.jwt;
+package com.example.springsecurity.common.config.security.AuthenticationEntryPoint;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

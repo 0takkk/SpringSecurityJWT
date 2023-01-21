@@ -1,4 +1,4 @@
-package com.example.springsecurity.common.jwt.member;
+package com.example.springsecurity.common.config.security.member;
 
 import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;

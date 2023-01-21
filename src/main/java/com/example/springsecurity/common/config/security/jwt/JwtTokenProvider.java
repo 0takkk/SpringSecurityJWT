@@ -1,6 +1,5 @@
-package com.example.springsecurity.common.jwt;
+package com.example.springsecurity.common.config.security.jwt;
 
-import com.example.springsecurity.domain.Member;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -25,8 +24,9 @@ public class JwtTokenProvider implements InitializingBean {
     @Value("${spring.jwt.secretKey}")
     private String secretKey;
 
-    @Value("${spring.jwt.token-alive-time}")
-    private long tokenAliveTime;
+    public static final long ACCESS_TOKEN_VALID_TIME = 1000L * 60 * 30;  // 30분
+
+    public static final long REFRESH_TOKEN_VALID_TIME = 1000L * 60 * 60 * 24 * 7;  // 7일
 
     private Key key;
 
@@ -38,13 +38,23 @@ public class JwtTokenProvider implements InitializingBean {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String createToken(Authentication authentication){
+    public String createAccessToken(Authentication authentication){
         Date now = new Date();
 
         return Jwts.builder()
                 .setSubject(authentication.getName())
                 .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + tokenAliveTime))
+                .setExpiration(new Date(now.getTime() + ACCESS_TOKEN_VALID_TIME))
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public String createRefreshToken(){
+        Date now = new Date();
+
+        return Jwts.builder()
+                .setIssuedAt(now)
+                .setExpiration(new Date(now.getTime() + REFRESH_TOKEN_VALID_TIME))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
