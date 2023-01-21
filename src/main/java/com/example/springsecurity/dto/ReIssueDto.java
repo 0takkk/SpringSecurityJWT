@@ -6,8 +6,8 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-public class TokenDto {
+public class ReIssueDto {
 
-    private String accessToken;
+    private String name;
     private String refreshToken;
 }
