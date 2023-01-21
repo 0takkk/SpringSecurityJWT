@@ -1,6 +1,7 @@
 package com.example.springsecurity.service;
 
 import com.example.springsecurity.domain.Member;
+import com.example.springsecurity.domain.Role;
 import com.example.springsecurity.dto.MemberDto;
 import com.example.springsecurity.exception.DuplicationMemberNameException;
 import com.example.springsecurity.repository.MemberRepository;
@@ -27,6 +28,7 @@ public class MemberService {
                 .name(memberDto.getName())
                 .password(passwordEncoder.encode(memberDto.getPassword()))
                 .position(memberDto.getPosition())
+                .role(Role.ROLE_MEMBER)
                 .build();
 
         memberRepository.save(member);
